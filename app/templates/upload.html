@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+    <div>
+        <label>文件上传</label>
+        <input type="file" id="upload">
+        <!--上传文件夹-->
+        <!--<input type="file" id="upload" webkitdirectory>-->
+    </div>
+    <div>
+        <input type="submit" value="上传" id="submit">
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    document.getElementById('submit').addEventListener('click', function(e){
+        var file = document.getElementById('upload').files[0]
+        var fd = new FormData()
+        fd.append('file', file)
+        $.ajax({
+            url:'/api/upload',
+            type:'POST',
+            contentType: false,
+            processData: false,
+            data: fd,
+            success:function(res){
+                console.log(res)
+            }
+        })
+    })
+</script>
+</html>

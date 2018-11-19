@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+    <h2 id="greet"></h2>
+    <div>
+        <h3>我关注的</h3>
+        
+    </div>
+    <div>
+        <h3>关注我的</h3>
+    </div>
+</body>
+<script>
+    document.getElementById('greet').innerHTML = 'Hello ' + sessionStorage.getItem('name')
+</script>
+</html>

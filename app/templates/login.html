@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+    <div>
+        <label>用户名</label>
+       <input type="text" id="username" value="dubi0924">
+    </div>
+    <div>
+        <label>密码</label>
+       <input type="password" id="password" value="123">
+    </div>
+    <div>
+        <label>邮箱</label>
+       <input type="email" id="email" value="dubi0924@outlook.com">
+    </div>
+    <div>
+        <input type="submit" value="登录" id="login">
+    </div>
+    <div>
+        <input type="submit" value="注册" id="regis">
+    </div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    document.getElementById('login').addEventListener('click', function(e){
+        username = document.getElementById('username').value;
+        password = document.getElementById('password').value;
+        $.ajax({
+            url:'/auth/login',
+            type:'POST',
+            contentType: 'application/json',
+            data:JSON.stringify({
+                username:username,
+                password:password
+            }),
+            success:function(res){
+                console.log(res)
+                sessionStorage.setItem('name', res.data.username)
+                sessionStorage.setItem('email', res.data.email)
+            }
+        })
+    })
+
+    document.getElementById('regis').addEventListener('click', function(e){
+        username = document.getElementById('username').value;
+        password = document.getElementById('password').value;
+        email = document.getElementById('email').value;
+        $.ajax({
+            url:'/auth/register',
+            type:'POST',
+            contentType: 'application/json',
+            data:JSON.stringify({
+                username:username,
+                password:password,
+                email:email
+            }),
+            success:function(res){
+                console.log(res)
+            }
+        })
+    })
+</script>
+</html>
